@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Awalé — Oware</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>Awalé <span class="subtitle">· Oware</span></h1>
+      <p class="tagline">Jeu de semailles africain — 2 joueurs, 48 graines, 6 cases par joueur.</p>
+    </header>
+
+    <section class="controls">
+      <label>Mode
+        <select id="mode">
+          <option value="pvp">2 joueurs (local)</option>
+          <option value="ai">Contre l'ordinateur</option>
+        </select>
+      </label>
+      <label id="difficulty-wrap">Difficulté
+        <select id="difficulty">
+          <option value="easy">Facile</option>
+          <option value="medium" selected>Moyen</option>
+          <option value="hard">Difficile</option>
+        </select>
+      </label>
+      <button id="new-game" class="btn" type="button">Nouvelle partie</button>
+    </section>
+
+    <div class="status" id="status"></div>
+
+    <section class="board-area">
+      <div class="store" id="store-top">
+        <span class="store-name" id="name-top">Joueur 2</span>
+        <span class="store-count" id="count-top">0</span>
+      </div>
+      <div class="board" id="board">
+        <div class="row row-top" id="row-top"></div>
+        <div class="row row-bottom" id="row-bottom"></div>
+      </div>
+      <div class="store" id="store-bottom">
+        <span class="store-name" id="name-bottom">Joueur 1</span>
+        <span class="store-count" id="count-bottom">0</span>
+      </div>
+    </section>
+
+    <details class="rules">
+      <summary>Règles de l'awalé (Oware)</summary>
+      <ul>
+        <li>Chaque joueur joue les 6 cases situées devant lui et sème dans le sens anti-horaire.</li>
+        <li>On récolte toutes les graines d'une de ses cases non vides, puis on en dépose une dans chaque case suivante (y compris chez l'adversaire), en sautant la case de départ si l'on fait un tour complet.</li>
+        <li>Si la dernière graine tombe dans une case adverse qui contient alors 2 ou 3 graines, on les capture ; la capture continue en reculant tant que les cases adverses contiennent 2 ou 3 graines.</li>
+        <li>On ne capture jamais dans sa propre rangée.</li>
+        <li>« Grand slam » interdit : un coup qui prendrait toutes les graines adverses ne capture rien.</li>
+        <li>Si l'adversaire n'a plus de graines, il faut lui en redonner si c'est possible (jouer un coup qui atteint ses cases).</li>
+        <li>La partie se termine lorsqu'un joueur n'a plus de graines et ne peut pas être « nourri » : l'autre joueur ramasse alors les graines restantes sur le plateau. Celui qui en a le plus gagne (24–24 : match nul).</li>
+        <li>Si une même position se répète (boucle de nourrissage en fin de partie), la partie s'arrête et l'on compte les graines capturées.</li>
+      </ul>
+    </details>
+
+    <div class="overlay hidden" id="overlay">
+      <div class="overlay-card">
+        <h2 id="overlay-title">Partie terminée</h2>
+        <p id="overlay-text"></p>
+        <button class="btn" id="overlay-new-game" type="button">Rejouer</button>
+      </div>
+    </div>
+  </main>
+
+  <script src="awale-logic.js"></script>
+  <script src="ai.js"></script>
+  <script src="ui.js"></script>
+</body>
+</html>
